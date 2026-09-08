@@ -55,6 +55,17 @@ text-align:center;
 
 
 
+/* Top Love Story Area */
+
+.symbol,
+.title{
+
+transform:translateY(35px);
+
+}
+
+
+
 /* Decorative Heart */
 
 .symbol{
@@ -300,7 +311,6 @@ params.get("day")
 "2012/5/17";
 
 
-
 let start =
 new Date(startDate);
 
@@ -326,8 +336,6 @@ coupleName;
 
 
 
-
-
 // TITLE
 
 let customTitle =
@@ -343,7 +351,6 @@ customTitle.replace(/\+/g," ");
 document.getElementById("title")
 .innerHTML =
 customTitle;
-
 
 
 
@@ -379,7 +386,6 @@ dateParts[0];
 
 
 
-
 // COUNT DAYS TOGETHER
 
 
@@ -388,7 +394,6 @@ function updateDays(){
 
 let today =
 new Date();
-
 
 
 let difference =
@@ -411,7 +416,6 @@ totalDays.toLocaleString();
 
 
 }
-
 
 
 updateDays();
@@ -441,6 +445,7 @@ if(background==="white"){
 document.body.style.background="#FFFFFF";
 
 }
+
 
 
 
