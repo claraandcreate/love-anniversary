@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Love Anniversary Widget</title>
+
+
+<style>
+
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Playfair+Display:wght@600&family=Libre+Baskerville&display=swap');
+
+
+
+*{
+box-sizing:border-box;
+}
+
+
+
+body{
+
+margin:0;
+
+height:360px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+padding-top:35px;
+
+background:transparent;
+
+}
+
+
+
+/* Main Widget */
+
+.card{
+
+width:100%;
+
+text-align:center;
+
+}
+
+
+
+/* Top Love Story Area */
+
+.symbol,
+.title{
+
+transform:translateY(35px);
+
+}
+
+
+
+/* Decorative Heart */
+
+.symbol{
+
+font-family:"Cormorant Garamond",serif;
+
+font-size:38px;
+
+color:#B89B72;
+
+margin-bottom:18px;
+
+}
+
+
+
+/* Title */
+
+.title{
+
+font-family:"Cormorant Garamond",serif;
+
+font-size:38px;
+
+letter-spacing:4px;
+
+color:#252525;
+
+margin-bottom:18px;
+
+}
+
+
+
+/* Big Number */
+
+.days{
+
+font-family:"Playfair Display",serif;
+
+font-size:120px;
+
+font-weight:600;
+
+line-height:1;
+
+color:#B77B7B;
+
+}
+
+
+
+/* Subtitle */
+
+.label{
+
+font-family:"Libre Baskerville",serif;
+
+font-size:15px;
+
+letter-spacing:4px;
+
+color:#8A8178;
+
+margin-top:8px;
+
+}
+
+
+
+/* Date */
+
+.date{
+
+font-family:"Libre Baskerville",serif;
+
+font-size:14px;
+
+letter-spacing:1px;
+
+color:#AAA29A;
+
+margin-top:28px;
+
+}
+
+
+
+/* Name */
+
+.name{
+
+font-family:"Cormorant Garamond",serif;
+
+font-size:32px;
+
+color:#54483F;
+
+margin-top:10px;
+
+}
+
+
+
+
+
+/* =====================
+   Themes
+===================== */
+
+
+
+/* Rose Vintage */
+
+.rose .days{
+
+color:#D18A9B;
+
+}
+
+
+.rose .title{
+
+color:#46363A;
+
+}
+
+
+
+
+/* Black Minimal */
+
+.black .days{
+
+color:#222222;
+
+}
+
+
+.black .title{
+
+color:#111111;
+
+}
+
+
+.black .symbol{
+
+color:#999999;
+
+}
+
+
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+
+<div class="card" id="card">
+
+
+
+<div class="symbol">
+
+♡
+
+</div>
+
+
+
+<div class="title" id="title">
+
+OUR LOVE STORY
+
+</div>
+
+
+
+<div class="days" id="days">
+
+0
+
+</div>
+
+
+
+<div class="label">
+
+DAYS TOGETHER
+
+</div>
+
+
+
+<div class="date" id="date">
+
+Since 05.17.2012
+
+</div>
+
+
+
+<div class="name" id="name">
+
+Helen & Alex
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+// =====================
+// URL SETTINGS
+// =====================
+
+
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+
+
+// LOVE START DATE
+
+let startDate =
+params.get("day")
+||
+"2012/5/17";
+
+
+let start =
+new Date(startDate);
+
+
+
+
+// COUPLE NAME
+
+let coupleName =
+params.get("text")
+||
+"Helen & Alex";
+
+
+coupleName =
+coupleName.replace(/\+/g," ");
+
+
+document.getElementById("name")
+.innerHTML =
+coupleName;
+
+
+
+
+// TITLE
+
+let customTitle =
+params.get("title")
+||
+"OUR LOVE STORY";
+
+
+customTitle =
+customTitle.replace(/\+/g," ");
+
+
+document.getElementById("title")
+.innerHTML =
+customTitle;
+
+
+
+
+
+
+// DATE DISPLAY
+
+let dateParts =
+startDate.split("/");
+
+
+if(dateParts.length===3){
+
+document.getElementById("date")
+.innerHTML =
+"Since "
++
+dateParts[1]
++
+"."
++
+dateParts[2]
++
+"."
++
+dateParts[0];
+
+}
+
+
+
+
+
+
+// COUNT DAYS TOGETHER
+
+
+function updateDays(){
+
+
+let today =
+new Date();
+
+
+let difference =
+today-start;
+
+
+
+let totalDays =
+Math.floor(
+difference /
+(1000*60*60*24)
+);
+
+
+
+document.getElementById("days")
+.innerHTML =
+totalDays.toLocaleString();
+
+
+
+}
+
+
+updateDays();
+
+
+
+setInterval(
+updateDays,
+86400000
+);
+
+
+
+
+
+
+
+// BACKGROUND MODE
+
+
+let background =
+params.get("bg");
+
+
+if(background==="white"){
+
+document.body.style.background="#FFFFFF";
+
+}
+
+
+
+
+
+
+
+// THEME MODE
+
+
+let theme =
+params.get("theme");
+
+
+
+let card =
+document.getElementById("card");
+
+
+
+if(theme==="rose"){
+
+card.classList.add("rose");
+
+}
+
+
+
+if(theme==="black"){
+
+card.classList.add("black");
+
+}
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
